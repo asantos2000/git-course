@@ -1,3 +1,3 @@
 It's neew file in the new file folder
 
-file5txt was just changed
+file5txt was just changed. This line was modified in master branch.

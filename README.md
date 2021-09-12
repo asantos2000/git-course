@@ -4,6 +4,10 @@ git crash course - cheatsheet style
 
 [DRAFT]
 
+## Basics
+
+### Local repo
+
 ```bash
 git status
 
@@ -131,7 +135,7 @@ ls -la .git/objects/
 # drwxr-xr-x   2 anderson  staff   64 Sep  8 19:46 pack
 ```
 
-![git-folder-structure](./media/git-structure.png)
+### Stage and commit
 
 ```bash
 cat .git/refs/heads/master

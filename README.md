@@ -1571,6 +1571,12 @@ ls -lt .git/objects
 # drwxr-xr-x  2 anderson  staff   64 Sep  8 19:46 pack
 
 # Merge conflict in pull operation
+# Change remote README.md file
+# change locally README.md file
+
+git add README.md
+
+git commit -m "Change README pull oper
 
 ```
 

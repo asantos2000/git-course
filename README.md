@@ -1585,7 +1585,328 @@ git commit -m "Change README pull oper"
 #  1 file changed, 6 insertions(+)
 
 # Bring remote changes
-git pull -vv
+git pull -v
+# From github.com:asantos2000/git-course
+#  = [up to date]      master     -> origin/master
+#  = [up to date]      feature-1  -> origin/feature-1
+# Auto-merging README.md
+# Merge made by the 'recursive' strategy.
+#  README.md | 4 ++++
+#  1 file changed, 4 insertions(+)
+
+git push       
+# Enumerating objects: 13, done.
+# Counting objects: 100% (13/13), done.
+# Delta compression using up to 4 threads
+# Compressing objects: 100% (9/9), done.
+# Writing objects: 100% (9/9), 1.08 KiB | 1.08 MiB/s, done.
+# Total 9 (delta 6), reused 0 (delta 0), pack-reused 0
+# remote: Resolving deltas: 100% (6/6), completed with 2 local objects.
+# To github.com:asantos2000/git-course.git
+#    dcb0b69..edf267f  master -> master
+
+git log
+# commit edf267f45c7008916c94ad2e514436e0796d2878 (HEAD -> master, origin/master) <-- Both point to the same commit (SHA1)
+# Merge: 44e5189 dcb0b69
+# Author: Anderson Santos <adsantos@gmail.com>
+# Date:   Sun Sep 12 17:39:04 2021 -0300
+
+#     Merge branch 'master' of github.com:asantos2000/git-course
+# ...
+```
+
+### Local and Remote sync
+
+```bash
+git pull -v 
+# From github.com:asantos2000/git-course
+#  = [up to date]      master     -> origin/master
+#  = [up to date]      feature-1  -> origin/feature-1
+# Already up to date.
+
+git push -v
+# Pushing to github.com:asantos2000/git-course.git
+# To github.com:asantos2000/git-course.git
+#  = [up to date]      master -> master
+# updating local tracking ref 'refs/remotes/origin/master'
+# Everything up-to-date
+```
+
+### Creating a Remote Branch Based on a Local Branch
+
+```bash
+git checkout -b feature-2
+# Switched to a new branch 'feature-2'
+
+git branch -a
+#   feature-1
+# * feature-2
+#   master
+#   remotes/origin/feature-1
+#   remotes/origin/master
+
+git branch -r
+#   origin/feature-1
+#   origin/master
+
+git branch -vv
+#   feature-1 d13edc5 [origin/feature-1] Add README.md
+# * feature-2 edf267f Merge branch 'master' of github.com:asantos2000/git-course
+#   master    edf267f [origin/master] Merge branch 'master' of github.com:asantos2000/git-course
+
+# Change some files
+
+git add feature/another-file.txt
+
+git commit -m "another-file.txt was modified in feature-2 branch"
+# feature-2 branch"
+# [feature-2 fcd5011] another-file.txt was modified in feature-2 branch
+#  1 file changed, 4 insertions(+), 2 deletions(-)
+
+git log
+# commit fcd50113670932014c522ce69ec0c3fdd4fa732a (HEAD -> feature-2)
+# Author: Anderson Santos <adsantos@gmail.com>
+# Date:   Sun Sep 12 18:07:27 2021 -0300
+
+#     another-file.txt was modified in feature-2 branch
+
+# commit edf267f45c7008916c94ad2e514436e0796d2878 (origin/master, master)
+# Merge: 44e5189 dcb0b69
+# Author: Anderson Santos <adsantos@gmail.com>
+# Date:   Sun Sep 12 17:39:04 2021 -0300
+
+#     Merge branch 'master' of github.com:asantos2000/git-course
+# ...
+
+# Try to push new branch
+git push -v
+# fatal: The current branch feature-2 has no upstream branch.
+# To push the current branch and set the remote as upstream, use
+
+#     git push --set-upstream origin feature-2
+
+# git push -u origin feature-2 # The same of
+git push --set-upstream origin feature-2
+# Pushing to github.com:asantos2000/git-course.git
+# Enumerating objects: 7, done.
+# Counting objects: 100% (7/7), done.
+# Delta compression using up to 4 threads
+# Compressing objects: 100% (4/4), done.
+# Writing objects: 100% (4/4), 451 bytes | 225.00 KiB/s, done.
+# Total 4 (delta 1), reused 0 (delta 0), pack-reused 0
+# remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+# remote: 
+# remote: Create a pull request for 'feature-2' on GitHub by visiting:
+# remote:      https://github.com/asantos2000/git-course/pull/new/feature-2
+# remote: 
+# To github.com:asantos2000/git-course.git
+#  * [new branch]      feature-2 -> feature-2
+# Branch 'feature-2' set up to track remote branch 'feature-2' from 'origin'.
+# updating local tracking ref 'refs/remotes/origin/feature-2'
+
+git branch -vv
+#   feature-1 d13edc5 [origin/feature-1] Add README.md
+# * feature-2 fcd5011 [origin/feature-2] another-file.txt was modified in feature-2 branch
+#   master    edf267f [origin/master] Merge branch 'master' of github.com:asantos2000/git-course
+
+# Make another change
+git add feature/one-more-file.txt
+# [feature-2 5caa7ce] one-more-file.txt was modified in feature-2 branch
+#  1 file changed, 2 insertions(+)
+
+git push -v # no ask about renote branch because now feature-2 is tracked
+# Pushing to github.com:asantos2000/git-course.git
+# Enumerating objects: 7, done.
+# Counting objects: 100% (7/7), done.
+# Delta compression using up to 4 threads
+# Compressing objects: 100% (4/4), done.
+# Writing objects: 100% (4/4), 430 bytes | 430.00 KiB/s, done.
+# Total 4 (delta 1), reused 0 (delta 0), pack-reused 0
+# remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+# To github.com:asantos2000/git-course.git
+#    fcd5011..5caa7ce  feature-2 -> feature-2
+# updating local tracking ref 'refs/remotes/origin/feature-2'
+
+git remote show origin
+# * remote origin
+#   Fetch URL: git@github.com:asantos2000/git-course.git
+#   Push  URL: git@github.com:asantos2000/git-course.git
+#   HEAD branch: master
+#   Remote branches:
+#     feature-1 tracked
+#     feature-2 tracked
+#     master    tracked
+#   Local branches configured for 'git pull':
+#     feature-1 merges with remote feature-1
+#     feature-2 merges with remote feature-2
+#     master    merges with remote master
+#   Local refs configured for 'git push':
+#     feature-1 pushes to feature-1 (up to date)
+#     feature-2 pushes to feature-2 (up to date)
+#     master    pushes to master    (up to date)
+```
+
+### Updating the Tracking Status of the Branches
+
+```bash
+# Create remote branch
+
+git fetch -v
+# From github.com:asantos2000/git-course
+#  = [up to date]      feature-2  -> origin/feature-2
+#  = [up to date]      feature-1  -> origin/feature-1
+#  = [up to date]      master     -> origin/master
+#  * [new branch]      temp       -> origin/temp
+
+git branch -a
+#   feature-1
+# * feature-2
+#   master
+#   remotes/origin/feature-1
+#   remotes/origin/feature-2
+#   remotes/origin/master
+#   remotes/origin/temp
+
+git checkout temp 
+# Branch 'temp' set up to track remote branch 'temp' from 'origin'.
+# Switched to a new branch 'temp
+
+git branch -vv
+#   feature-1 d13edc5 [origin/feature-1] Add README.md
+#   feature-2 5caa7ce [origin/feature-2] one-more-file.txt was modified in feature-2 branch
+#   master    edf267f [origin/master] Merge branch 'master' of github.com:asantos2000/git-course
+# * temp      edf267f [origin/temp] Merge branch 'master' of github.com:asantos2000/git-course
+
+# Delete remote branch
+
+git fetch -v
+# From github.com:asantos2000/git-course
+#  = [up to date]      feature-1  -> origin/feature-1
+#  = [up to date]      feature-2  -> origin/feature-2
+#  = [up to date]      master     -> origin/master
+
+git branch -vv
+#   feature-1 d13edc5 [origin/feature-1] Add README.md
+#   feature-2 5caa7ce [origin/feature-2] one-more-file.txt was modified in feature-2 branch
+#   master    edf267f [origin/master] Merge branch 'master' of github.com:asantos2000/git-course
+# * temp      edf267f [origin/temp] Merge branch 'master' of github.com:asantos2000/git-course
+
+git remote update origin --prune
+# Fetching origin
+# From github.com:asantos2000/git-course
+#  - [deleted]         (none)     -> origin/temp
+
+git branch -vv
+#   feature-1 d13edc5 [origin/feature-1] Add README.md
+#   feature-2 5caa7ce [origin/feature-2] one-more-file.txt was modified in feature-2 branch
+#   master    edf267f [origin/master] Merge branch 'master' of github.com:asantos2000/git-course
+# * temp      edf267f [origin/temp: gone] Merge branch 'master' of github.com:asantos2000/git-course
+
+git branch -d temp # -D to force
+# Deleted branch temp (was edf267f).
+```
+
+### Removing a Remote Branch Using a Local Terminal
+
+```bash
+# Local
+git checkout -b temp
+# Switched to a new branch 'temp'
+
+# Remote
+git push -u origin temp
+# Total 0 (delta 0), reused 0 (delta 0), pack-reused 0
+# remote: 
+# remote: Create a pull request for 'temp' on GitHub by visiting:
+# remote:      https://github.com/asantos2000/git-course/pull/new/temp
+# remote: 
+# To github.com:asantos2000/git-course.git
+#  * [new branch]      temp -> temp
+# Branch 'temp' set up to track remote branch 'temp' from 'origin'.
+
+git branch -vv
+#   feature-1 d13edc5 [origin/feature-1] Add README.md
+#   feature-2 5caa7ce [origin/feature-2] one-more-file.txt was modified in feature-2 branch
+#   master    edf267f [origin/master] Merge branch 'master' of github.com:asantos2000/git-course
+# * temp      edf267f [origin/temp] Merge branch 'master' of github.com:asantos2000/git-course
+
+# Delete remote branch
+git push origin -d temp
+# To github.com:asantos2000/git-course.git
+#  - [deleted]         temp
+
+git checkout master
+# M       README.md
+# Switched to branch 'master'
+# Your branch is up to date with 'origin/master'.
+
+git branch -d temp 
+# Deleted branch temp (was edf267f).
+```
+
+### Git Show-ref
+
+```bash
+git show-ref
+# d13edc50e7ef8886435acfbc7e2304f9ea304796 refs/heads/feature-1
+# 5caa7ce813be37cac13ffde9682b74878357ab8d refs/heads/feature-2
+# edf267f45c7008916c94ad2e514436e0796d2878 refs/heads/master
+# d13edc50e7ef8886435acfbc7e2304f9ea304796 refs/remotes/origin/feature-1
+# 5caa7ce813be37cac13ffde9682b74878357ab8d refs/remotes/origin/feature-2
+# edf267f45c7008916c94ad2e514436e0796d2878 refs/remotes/origin/master
+
+ls .git/refs/heads
+# feature-1 feature-2 master
+
+ls .git/refs/remotes/origin 
+# feature-1 feature-2 master
+
+git show-ref master # They are sync
+# edf267f45c7008916c94ad2e514436e0796d2878 refs/heads/master
+# edf267f45c7008916c94ad2e514436e0796d2878 refs/remotes/origin/master
+
+git checkout feature-2
+# Switched to branch 'feature-2'
+# Your branch is up to date with 'origin/feature-2'.
+
+git show-ref feature-2
+# 5caa7ce813be37cac13ffde9682b74878357ab8d refs/heads/feature-2
+# 5caa7ce813be37cac13ffde9682b74878357ab8d refs/remotes/origin/feature-2
+
+# Make some changes and commit then
+
+git add file8.txt
+
+git commit -m "Changes in file8.txt - branch feature-2"
+# [feature-2 638ed6e] Changes in file8.txt - branch feature-2
+#  1 file changed, 3 insertions(+), 1 deletion(-)
+
+git show-ref feature-2 # out of sync
+# 638ed6ef6f71e6ff111d67dd0a96b89a81825229 refs/heads/feature-2
+# 5caa7ce813be37cac13ffde9682b74878357ab8d refs/remotes/origin/feature-2
+
+git push
+# Enumerating objects: 5, done.
+# Counting objects: 100% (5/5), done.
+# Delta compression using up to 4 threads
+# Compressing objects: 100% (3/3), done.
+# Writing objects: 100% (3/3), 346 bytes | 346.00 KiB/s, done.
+# Total 3 (delta 1), reused 0 (delta 0), pack-reused 0
+# remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+# To github.com:asantos2000/git-course.git
+#    5caa7ce..638ed6e  feature-2 -> feature-2
+
+git show-ref feature-2 # in sync again
+# 638ed6ef6f71e6ff111d67dd0a96b89a81825229 refs/heads/feature-2
+# 638ed6ef6f71e6ff111d67dd0a96b89a81825229 refs/remotes/origin/feature-2
+```
+
+> Change the author of the last commit with `git commit --amend -- author="UserName <user@email>"`
+
+### Pull Requests
+
+```bash
+
 ```
 
 ## References

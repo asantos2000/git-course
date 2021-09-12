@@ -1576,8 +1576,12 @@ ls -lt .git/objects
 
 git add README.md
 
-git commit -m "Change README pull oper
+git commit -m "Change README pull oper"
+# [master 99cb159] Change README pull oper
+#  1 file changed, 6 insertions(+)
 
+# Bring remote changes
+git pull -vv
 ```
 
 ## References

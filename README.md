@@ -1909,6 +1909,34 @@ git show-ref feature-2 # in sync again
 
 ### Pull Requests
 
+### Tags
+
+```bash
+git tag
+
+git tag v0.0.1
+
+git tag
+# v0.0.1
+
+git show v0.0.1
+# commit 36f9202b3718334a9ae8b90ac90fc8c0b516a2d6 (HEAD -> master, tag: v0.0.1, origin/master)
+# Merge: 4a64616 7158175
+# Author: adsantos2000 <90580368+adsantos2000@users.noreply.github.com>
+# Date:   Sun Sep 12 20:13:38 2021 -0300
+
+#     Merge pull request #3 from asantos2000/adsantos2000-patch-1
+    
+#     Update README.md
+
+# Create new file
+echo "Hello git with tags" > new-file1.txt
+
+git add new-file1.txt
+
+git commit -a -m "New file"
+```
+
 ```bash
 
 ```

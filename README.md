@@ -1935,9 +1935,30 @@ echo "Hello git with tags" > new-file1.txt
 git add new-file1.txt
 
 git commit -a -m "New file"
-```
+# commit cde64ede15055060a0bb885f2efe5cc229f19d5b (HEAD -> master)
+# Author: Anderson Santos <adsantos@gmail.com>
+# Date:   Mon Sep 13 20:47:36 2021 -0300
 
-```bash
+#     New file
+
+# commit 36f9202b3718334a9ae8b90ac90fc8c0b516a2d6 (tag: v0.0.1, origin/master)
+# Merge: 4a64616 7158175
+# Author: adsantos2000 <90580368+adsantos2000@users.noreply.github.com>
+# Date:   Sun Sep 12 20:13:38 2021 -0300
+
+#     Merge pull request #3 from asantos2000/adsantos2000-patch-1
+    
+#     Update README.md
+
+# Create git command alias
+git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --"
+
+git lg
+# * cde64ed - (HEAD -> master) New file (2 minutes ago) <Anderson Santos>
+# *   36f9202 - (tag: v0.0.1, origin/master) Merge pull request #3 from asantos2000/adsantos2000-patch-1 (25 hours ago) <adsantos2000>
+# |\  
+# | * 7158175 - Update README.md (25 hours ago) <adsantos2000>
+
 
 ```
 

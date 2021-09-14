@@ -2041,7 +2041,14 @@ git cat-file -p c794c75c9b
 # author Anderson Santos <adsantos@gmail.com> 1631577106 -0300
 # committer Anderson Santos <adsantos@gmail.com> 1631577106 -0300
 
-# add tags
+# add tags to remote
+git push --tags
+# Enumerating objects: 1, done.
+# Counting objects: 100% (1/1), done.
+# Writing objects: 100% (1/1), 167 bytes | 167.00 KiB/s, done.
+# Total 1 (delta 0), reused 0 (delta 0), pack-reused 0
+# To github.com:asantos2000/git-course.git
+#  * [new tag]         v0.0.1 -> v0.0.1
 ```
 
 ## References

@@ -1959,7 +1959,89 @@ git lg
 # |\  
 # | * 7158175 - Update README.md (25 hours ago) <adsantos2000>
 
+git checkout v0.0.1
+# Note: switching to 'v0.0.1'.
 
+# You are in 'detached HEAD' state. You can look around, make experimental
+# changes and commit them, and you can discard any commits you make in this
+# state without impacting any branches by switching back to a branch.
+
+# If you want to create a new branch to retain commits you create, you may
+# do so (now or later) by using -c with the switch command. Example:
+
+#   git switch -c <new-branch-name>
+
+# Or undo this operation with:
+
+#   git switch -
+
+# Turn off this advice by setting config variable advice.detachedHead to false
+
+# HEAD is now at 36f9202 Merge pull request #3 from asantos2000/adsantos2000-patch-1
+
+ls .git/refs/tags
+# v0.0.1
+
+cat .git/refs/tags/v0.0.1
+# 36f9202b3718334a9ae8b90ac90fc8c0b516a2d6
+
+git tag v0.0.1
+# fatal: tag 'v0.0.1' already exists
+
+# The tag is not push to remote and is local only
+# Check github tags - nothing
+git push
+
+# Delete and create annoted tag
+git tag -d v0.0.1
+# Deleted tag 'v0.0.1' (was 36f9202)
+
+git tag -a v0.0.1 -m "Initial version"
+
+git tag
+# v0.0.1
+
+git tag -v v0.0.1
+# object c794c75c9bc3defad66362d99a0063aa091e5e14
+# type commit
+# tag v0.0.1
+# tagger Anderson Santos <adsantos@gmail.com> 1631577530 -0300
+
+# Initial version
+# error: no signature found
+
+ls .git/refs/tags
+# v0.0.1
+
+cat .git/refs/tags/v0.0.1
+# bb4269a7f6004fb5576eaed98fcbf9ab52a69c8b <-- hash of annoted tag
+
+ls -l .git/objects/bbtotal 16
+# -r--r--r--  1 anderson  staff  140 Sep 13 20:58 4269a7f6004fb5576eaed98fcbf9ab52a69c8b
+# -r--r--r--  1 anderson  staff   94 Sep 12 18:13 e668061b0f15f8b673ca795978e25174f7a3fa
+
+git cat-file -p bbe668061b0f15f8b673ca795978e25174f7a3fa
+# 100644 blob c1e9302939503e173fc72860b5fef7e1ee6dd7e4    another-file.txt
+# 100644 blob 81f043037414437db345463eb56136f418fd9e1d    one-more-file.txt
+
+git cat-file -t bb4269a7f6004fb5576eaed98fcbf9ab52a69c8b
+# tag
+
+git cat-file -p bb4269a7f6004fb5576eaed98fcbf9ab52a69c8b
+# object c794c75c9bc3defad66362d99a0063aa091e5e14
+# type commit
+# tag v0.0.1
+# tagger Anderson Santos <adsantos@gmail.com> 1631577530 -0300
+
+# Initial version
+
+git cat-file -p c794c75c9b         
+# tree f630f924f5fd6e685312c40b1d418e75156dd06b
+# parent cde64ede15055060a0bb885f2efe5cc229f19d5b
+# author Anderson Santos <adsantos@gmail.com> 1631577106 -0300
+# committer Anderson Santos <adsantos@gmail.com> 1631577106 -0300
+
+# add tags
 ```
 
 ## References

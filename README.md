@@ -2049,6 +2049,83 @@ git push --tags
 # Total 1 (delta 0), reused 0 (delta 0), pack-reused 0
 # To github.com:asantos2000/git-course.git
 #  * [new tag]         v0.0.1 -> v0.0.1
+
+git commit -a -m "Another file"          
+# [master fee45fe] Another file
+#  1 file changed, 8 insertions(+), 1 deletion(-)
+
+git-course git:(master) git tag -a v0.0.2 -m "Patch"
+
+git push origin v0.0.2 # only push tag
+# Enumerating objects: 9, done.
+# Counting objects: 100% (9/9), done.
+# Delta compression using up to 4 threads
+# Compressing objects: 100% (7/7), done.
+# Writing objects: 100% (7/7), 1.73 KiB | 1.73 MiB/s, done.
+# Total 7 (delta 4), reused 0 (delta 0), pack-reused 0
+# remote: Resolving deltas: 100% (4/4), completed with 2 local objects.
+# To github.com:asantos2000/git-course.git
+#  * [new tag]         v0.0.2 -> v0.0.2
+
+git log
+# commit fee45fec6195c257e2d89e3865dc9b569867255c (HEAD -> master, tag: v0.0.2)
+# Author: Anderson Santos <adsantos@gmail.com>
+# Date:   Mon Sep 13 21:14:28 2021 -0300
+
+#     Another file
+
+# commit 9ebbccbb4ea7c1f0a80d138800072c4466690afe
+# Author: Anderson Santos <adsantos@gmail.com>
+# Date:   Mon Sep 13 21:11:04 2021 -0300
+
+#     Initial course version
+
+# commit c794c75c9bc3defad66362d99a0063aa091e5e14 (tag: v0.0.1, origin/master)
+# Author: Anderson Santos <adsantos@gmail.com>
+# Date:   Mon Sep 13 20:51:46 2021 -0300
+
+#     add tags
+
+# commit cde64ede15055060a0bb885f2efe5cc229f19d5b
+# Author: Anderson Santos <adsantos@gmail.com>
+# Date:   Mon Sep 13 20:47:36 2021 -0300
+
+# To push changes
+git push
+# Total 0 (delta 0), reused 0 (delta 0), pack-reused 0
+# To github.com:asantos2000/git-course.git
+#    c794c75..fee45fe  master -> master
+
+git log
+# commit fee45fec6195c257e2d89e3865dc9b569867255c (HEAD -> master, tag: v0.0.2, origin/master)
+# Author: Anderson Santos <adsantos@gmail.com>
+# Date:   Mon Sep 13 21:14:28 2021 -0300
+
+#     Another file
+
+# commit 9ebbccbb4ea7c1f0a80d138800072c4466690afe
+# Author: Anderson Santos <adsantos@gmail.com>
+# Date:   Mon Sep 13 21:11:04 2021 -0300
+
+#     Initial course version
+
+# commit c794c75c9bc3defad66362d99a0063aa091e5e14 (tag: v0.0.1)
+# Author: Anderson Santos <adsantos@gmail.com>
+# Date:   Mon Sep 13 20:51:46 2021 -0300
+
+#     add tags
+```
+
+### Create release
+
+Git command has no create release command, use `gh` command line.
+
+```bash
+# install gh command
+brew install gh
+
+
+
 ```
 
 ## References
